@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <div id="paraContainer">
+            <p id="para1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, maxime, ipsa ut esse voluptate ea voluptas incidunt totam quisquam beatae ducimus itaque perspiciatis praesentium mollitia eos fugiat ullam iste exercitationem ipsam reiciendis! Itaque, atque.</p>
+            <p id="para2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, maxime, ipsa ut esse voluptate ea voluptas incidunt totam quisquam beatae ducimus itaque perspiciatis praesentium mollitia eos fugiat ullam iste exercitationem ipsam reiciendis! Itaque, atque.</p>
+            <p id="para3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, maxime, ipsa ut esse voluptate ea voluptas incidunt totam quisquam beatae ducimus itaque perspiciatis praesentium mollitia eos fugiat ullam iste exercitationem ipsam reiciendis! Itaque, atque.</p>
+        </div>
+        <div class="btnContainer">
+            <button class="btn btn-primary" id="btnChangeColor">Change Colors Of Para</button>
+            <button class="btn btn-primary" id="btnNewWindow">Open New Window Click Here</button>
+        </div>
+    </div>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeColorOfPara(){
+            let paragraphs = document.getElementById("paraContainer").children;
+            for(let i=0; i<paragraphs.length; i++){
+                paragraphs[i].style.color = getRandomColor();   
+            }
+        }
+
+        let btnChangeColor = document.getElementById("btnChangeColor");
+        btnChangeColor.addEventListener('click', changeColorOfPara);
+
+        let btnNewWindow = document.getElementById("btnNewWindow");
+        btnNewWindow.addEventListener('click', function(){
+            window.open("helloworld.html","_blank");
+        })
+
+    </script>
+</body>
+</html>
