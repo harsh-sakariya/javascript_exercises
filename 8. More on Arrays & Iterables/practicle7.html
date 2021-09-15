@@ -1,0 +1,43 @@
+ <!-- 7)     Create a list (and possibly some surrounding logic) where you ensure
+         that NO duplicate values can be added. Use whichever approach seems
+         appropriate to you.  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br>
+    <input type="text" id="addElement">
+    <button id="btnAdd">Add Element in Array</button>
+    <br><br>
+    <div id="showArr"></div>
+
+    <script>
+        let arr = [];
+        const btnAdd = document.getElementById("btnAdd");
+        const addElement = document.getElementById("addElement");
+        const showArr = document.getElementById("showArr");
+        btnAdd.addEventListener("click",()=>{
+            let enteredValue = addElement.value.trim();
+            if(enteredValue !== ""){
+                if(!arr.includes(enteredValue)){
+                    arr.push(enteredValue);
+                }
+                else{
+                    alert("This element is already exists");
+                }
+            }
+            else{
+                alert("Empty Field does not exist");
+            }
+            showArr.innerHTML = arr;
+            addElement.value = "";
+        })
+    </script>
+</body>
+</html>
+
+         
