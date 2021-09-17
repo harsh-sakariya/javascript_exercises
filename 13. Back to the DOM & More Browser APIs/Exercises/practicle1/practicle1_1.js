@@ -1,0 +1,1 @@
+console.log("practicle1_1.js loaded...");
