@@ -2,78 +2,29 @@ const encodedString = document.getElementById("encodedString");
 const decodeBtn = document.getElementById("decodeBtn");
 const showResult = document.getElementById("showResult");
 
-const obj = {
-    "A":"N",
-    "B":"O",
-    "C":"P",
-    "D":"Q",
-    "E":"R",
-    "F":"S",
-    "G":"T",
-    "H":"U",
-    "I":"V",
-    "J":"W",
-    "K":"X",
-    "L":"Y",
-    "M":"Z",
-    "N":"A",
-    "O":"B",
-    "P":"C",
-    "Q":"D",
-    "R":"E",
-    "S":"F",
-    "T":"G",
-    "U":"H",
-    "V":"I",
-    "W":"J",
-    "X":"K",
-    "Y":"L",
-    "Z":"M",
-    "a":"n",
-    "b":"o",
-    "c":"p",
-    "d":"q",
-    "e":"r",
-    "f":"s",
-    "g":"t",
-    "h":"u",
-    "i":"v",
-    "j":"w",
-    "k":"x",
-    "l":"y",
-    "m":"z",
-    "n":"a",
-    "o":"b",
-    "p":"c",
-    "q":"d",
-    "r":"e",
-    "s":"f",
-    "t":"g",
-    "u":"h",
-    "v":"i",
-    "w":"j",
-    "x":"k",
-    "y":"l",
-    "z":"m",
-}
-
-let str = "aZmMz";
-
-
 function decodeROT13(){
     const str = encodedString.value;
     if(str.trim()){
-        let charArr = str.split('').map(element => obj[element]?obj[element]:element);
+        let charArr = str.split('').map(element => {
+            const charCode = element.charCodeAt(0);
+            if((charCode <= 77 && charCode >= 65) || (charCode <= 109 && charCode >= 97)){
+                return String.fromCharCode(charCode+13);
+            }
+            else if((charCode <= 90 && charCode >= 78) || (charCode <= 122 && charCode >= 110)){
+                return String.fromCharCode(charCode-13);
+            }
+            else{
+                return element;
+            }
+        });
         let decodeStr = '';
         for(const character of charArr){
             decodeStr += character;
         }
-        // return decodeStr;
         showResult.textContent = `Decoded Sting: ${decodeStr}`;
     }
     else{
         alert("Empty Field");
-        showResult.textContent = "";
     }
 }
 
