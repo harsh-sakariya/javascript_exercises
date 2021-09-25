@@ -16,8 +16,8 @@
 14.ooooooooooooooooo       140  141  142  143  144  145  146  147  148  149  1410  1411  1412  1413  1414  1415  1416  1417
 */
 let spaceCount = 0;
-let section = 7;
-let noOfZeroInLine = 17;
+const section = 5;
+const noOfZeroInLine = 17;
 for(let i=1; i<=section; i++){
     let str = "";
     if(i%2!==0){
