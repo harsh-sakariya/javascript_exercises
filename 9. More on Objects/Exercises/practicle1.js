@@ -1,25 +1,9 @@
 // 1) there is one object with 4 key,values then create three new objet from that single object (two object will take one key,value pair from that object and last( third object) take 3rd and 4th key,value pair of that object )
 
-function deleteKeyValuePair(position,object){
-    const lenOfObject = Object.keys(object).length;
-    let notRemovePosition;
-    if(position === "first"){
-        notRemovePosition = 0;
-    }else{
-        notRemovePosition = lenOfObject-1;
-    }
-
-    let keys = [];
-    for(let i=0; i<lenOfObject; i++){
-        if(notRemovePosition == i){
-            continue;
-        }
-        const key = Object.keys(object)[i];
-        keys.push(key);
-    }
-    for(let ele of keys){
-        delete object[ele];
-    }
+function getKeyValuePair(object, index){
+    const key = Object.keys(object)[index];
+    const value = object[key];
+    return {[key]: value}
 }
 
 const obj = {
@@ -28,13 +12,13 @@ const obj = {
     city: "rajkot",
     language: "java"
 }
-const obj1 = { ...obj };
-const obj2 = { ...obj };
-const obj3 = { ...obj };
 
-deleteKeyValuePair("first",obj1);
-deleteKeyValuePair("first",obj2);
-deleteKeyValuePair("last",obj3);
+
+const obj1 = getKeyValuePair(obj,0);
+const obj2 = getKeyValuePair(obj,0);
+const obj3 = { ...getKeyValuePair(obj,2), ...getKeyValuePair(obj,3) };
+
+
 console.log(obj1);
 console.log(obj2);
 console.log(obj3);

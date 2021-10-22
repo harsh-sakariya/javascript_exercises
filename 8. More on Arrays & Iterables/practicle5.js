@@ -16,6 +16,6 @@ function findMax(){
     return max;
 }
 
-let arr = [-26,-88,25,90,-50,-12,20];
+let arr = [-26,-88,25,90,-50,-12,20,40,190];
 let arrMax = findMax(...arr);
 console.log(arrMax);
