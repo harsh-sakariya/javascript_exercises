@@ -6,14 +6,32 @@ const arrOfDefaultCurrency = [
   ["ONE",1],
   ["FIVE",5],
   ["TEN",10],
+  ["EIGHT HUNDRED",800],
   ["TWENTY",20],
   ["ONE HUNDRED",100],
+  ["FIVE HUNDRED",500]
+
 ]
 
 let cashInDrawerObj = {}
 
 for(const defaultCurrency of arrOfDefaultCurrency){
   cashInDrawerObj[defaultCurrency[0]] = {price: defaultCurrency[1], quantity: 0}
+}
+
+let cashInDrawerArr = [];
+for (var cashInDrawer in cashInDrawerObj) {
+  cashInDrawerArr.push([cashInDrawer, cashInDrawerObj[cashInDrawer]]);
+}
+
+cashInDrawerArr.sort(function(a, b){
+  return b[1]['price'] - a[1]['price'];
+})
+
+cashInDrawerObj = {};
+
+for(const cashInDrawer of cashInDrawerArr){
+  cashInDrawerObj[cashInDrawer[0]] = cashInDrawer[1];
 }
 
 function giveMeSomeChange(cost, totalCash, cashInDrawer){
@@ -52,7 +70,10 @@ function giveMeSomeChange(cost, totalCash, cashInDrawer){
         totalAmountInDrawer = parseFloat((totalAmountInDrawer - currencyPrice).toFixed(2));
         count++;
       }
-      resultOfChange.push([currency,(currencyPrice*count).toFixed(2),count]);
+      const amountToGive = parseFloat((currencyPrice*count).toFixed(2));
+      if(amountToGive != 0.00){
+        resultOfChange.push([currency,amountToGive,count]);
+      }
     }
   }
   if(currentChangeAmount > 0){
@@ -66,5 +87,5 @@ function giveMeSomeChange(cost, totalCash, cashInDrawer){
   }
 }
 
-const resultObj = giveMeSomeChange(10, 10, [["PENNY", 0.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55],  ["ONE HUNDRED", 100]]);
+const resultObj = giveMeSomeChange(800, 1600, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0], ["FIVE HUNDRED", 500],["EIGHT HUNDRED",800]]);
 console.log(resultObj);
